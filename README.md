@@ -1,23 +1,24 @@
 # docker-wordpress-mysql
-#A simple docker compose to deploy Wordpress with MySQL.
+A simple docker compose to deploy Wordpress with MySQL.
 
-PROJECT STRUCTURE:
-.
-.gitignore
+Project structure:
+```
 .env
+.gitignore
 ├── compose.yaml
 └── README.md
+```
 
-COMPOSE.YAML
-
+[_compose.yaml_](compose.yaml)
+```
 services:
   db:
-    # We use a NySQL image which supports both amd64 & arm64 architecture
-    image: mysql:5.7
+    # We use a MySQL image which supports both amd64 & arm64 architecture
+    #image: mysql:8.0.27
     ...
   wordpress:
     image: wordpress:latest
     ports:
       - 8080:80
-    restart: unless-stopped
+    restart: always
     ...
