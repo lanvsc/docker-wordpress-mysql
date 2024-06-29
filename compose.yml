@@ -1,0 +1,25 @@
+services:
+   db:
+     image: mysql:5.7
+     volumes:
+       - db_data:/var/lib/mysql
+     restart: unless-stopped
+     environment:
+       MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASS}
+       MYSQL_DATABASE: wordpress
+       MYSQL_USER: ${DB_USER}
+       MYSQL_PASSWORD: ${DB_PASS}
+
+   wordpress:
+     depends_on:
+       - db
+     image: wordpress:latest
+     ports:
+       - "8080:80"
+     restart: unless-stopped
+     environment:
+       WORDPRESS_DB_HOST: db:3306
+       WORDPRESS_DB_USER: ${WP_USER}
+       WORDPRESS_DB_PASSWORD: ${WP_PASS}
+volumes:
+    db_data:
