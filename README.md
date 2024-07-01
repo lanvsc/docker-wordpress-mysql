@@ -15,10 +15,9 @@ services:
   db:
     # We use a MySQL image which supports both amd64 & arm64 architecture
     #image: mysql:8.0.27
-    ...
+
   wordpress:
     image: wordpress:latest
     ports:
       - 8080:80
     restart: always
-    ...
